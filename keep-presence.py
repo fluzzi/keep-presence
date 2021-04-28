@@ -72,11 +72,16 @@ def move_mouse_when_unable_to_move(expected_mouse_position):
 def move_mouse():
     new_x = currentPosition[0] + PIXELS_TO_MOVE
     new_y = currentPosition[1] + PIXELS_TO_MOVE
+    old_x = currentPosition[0]
+    old_y = currentPosition[1]
 
     new_position = (new_x, new_y)
     mouse.position = new_position
-
     move_mouse_when_unable_to_move(new_position)
+    time.sleep(0.1)
+    old_position = (old_x, old_y)
+    mouse.position = old_position
+    move_mouse_when_unable_to_move(old_position)
 
     current_position = mouse.position
 
